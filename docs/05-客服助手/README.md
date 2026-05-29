@@ -178,4 +178,5 @@ Key 绝对不能进 Git。本项目放在 Nacos `shared-langchain4j.yaml`,通过
 
 ## 📚 相关文档
 
+- [数据库设计](数据库设计.md)
 - [专题 03:LangChain4j + Netty 搭建 AI 客服](../07-亮点技术专题/03-AI客服实现.md) ⭐

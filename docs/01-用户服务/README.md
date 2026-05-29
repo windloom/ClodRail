@@ -42,7 +42,7 @@ flowchart LR
         CAdminAuth[admin/AuthController]
         S[UserService / AuthService / ContactService]
         M[UserMapper / AdminMapper / ContactMapper]
-        DB[(MySQL rs_user)]
+        DB[(MySQL rs-customer)]
         RD[(Redis)]
     end
 
@@ -214,7 +214,7 @@ graph LR
 **乘车人(contact)建模要点**:
 
 - 一个用户可绑定多个乘车人,下单时从 `contact` 表选择
-- `contact.id` 在订单里作为 `order_passenger.contact_id` 外键
+- `contact.id` 在订单里作为 `order_seat.passenger_id` 记录乘车人
 - 支持身份证、护照、港澳通行证三种证件类型
 
 ## 5. 技术难点 & 踩坑记录
@@ -249,7 +249,7 @@ Redis 里存的是 `GET-admin:user:list`,中间用 `-` 分隔 Method 和 path,pa
 
 **坑 4:跨服务查用户信息**
 
-其它服务通过 Feign 调用 [`rs-api/client/user/UserClient`](../../RailwaySystem-Backend/rs-api/src/main/java/com/rs/client/user/UserClient.java) 查用户/乘车人。**千万不要直连 `rs_user` 库**——这是微服务最大的反模式之一。
+其它服务通过 Feign 调用 [`rs-api/client/user/UserClient`](../../RailwaySystem-Backend/rs-api/src/main/java/com/rs/client/user/UserClient.java) 查用户/乘车人。**千万不要直连 `rs-customer` 库**——这是微服务最大的反模式之一。
 
 ## 📚 相关文档
 

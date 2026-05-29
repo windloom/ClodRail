@@ -45,7 +45,7 @@ flowchart LR
     AT --> TrS[TrainService]
 
     S & SS & StS & LS & TrS --> M[Mappers]
-    M --> DB[(MySQL rs_ticket)]
+    M --> DB[(MySQL rs-ticket)]
     S --> RD[(Redis)]
 
     XXL[XXL-Job] -.每日预热.-> RD

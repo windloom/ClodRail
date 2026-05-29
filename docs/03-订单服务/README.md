@@ -41,7 +41,7 @@ flowchart TB
     OS --> Feign[Feign: ticket/user]
     OS --> MQ[RabbitMQ]
     MQ --> Listener[TicketOrderListener]
-    Listener --> DB[(MySQL rs_order)]
+    Listener --> DB[(MySQL rs-order)]
 
     XXL[XXL-Job] -.每 5 min.-> Task[OrderExpireJobHandler]
     Task --> OS
@@ -68,7 +68,7 @@ sequenceDiagram
     O->>O: 判断 ticket:hot 未命中 → commonCreateOrder
     O->>T: Feign 查余票 & 占座
     T-->>O: 座位号
-    O->>DB: INSERT orders + order_passenger(本地事务)
+    O->>DB: INSERT `order` + order_seat(本地事务)
     O-->>U: 订单号
 ```
 
@@ -107,7 +107,7 @@ sequenceDiagram
         S->>O: commit(context)
         O->>MQ: rs.ticket.order 消息
         MQ->>O: Listener 消费
-        O->>DB: INSERT orders & order_passenger
+        O->>DB: INSERT `order` & order_seat
     end
 
     O-->>U: 返回订单号

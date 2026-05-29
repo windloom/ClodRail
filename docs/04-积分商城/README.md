@@ -31,7 +31,7 @@ flowchart LR
 
     PC & MC & AM --> S[MallService/PointsService]
     S --> Cache[(Redis 缓存)]
-    S --> DB[(MySQL rs_mall)]
+    S --> DB[(MySQL rs-mall)]
     S --> ES[(Elasticsearch)]
 
     UserFeign -.查积分余额.-> User[rs-user]
